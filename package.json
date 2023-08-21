@@ -1,6 +1,6 @@
 {
   "name": "llm-feedback-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "NPM module to store LLM content and create feedback",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

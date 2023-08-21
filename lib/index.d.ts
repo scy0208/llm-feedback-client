@@ -14,20 +14,20 @@ export declare class Client {
     registerConfig({ configName, config }: {
         configName: string;
         config: JSONType;
-    }): string;
+    }): Promise<string>;
     storeContent({ content, configName, id, groupId, createdBy }: {
         content: string;
         configName: string;
         id?: UUID;
         groupId?: UUID;
         createdBy?: string;
-    }): UUID;
+    }): Promise<UUID>;
     createFeedback({ contentId, key, score, comment, user }: {
         contentId: string;
         key: string;
         score: number;
         comment?: string;
         user?: string;
-    }): UUID;
+    }): Promise<void>;
 }
 export {};

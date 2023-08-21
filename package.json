@@ -1,0 +1,36 @@
+{
+  "name": "llm-feedback-client",
+  "version": "0.0.1",
+  "description": "NPM module to store LLM content and create feedback",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node lib/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scy0208/llm-feedback-client.git"
+  },
+  "keywords": [
+    "llm-feedback"
+  ],
+  "author": "Chunyang Shen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scy0208/llm-feedback-client/issues"
+  },
+  "homepage": "https://github.com/scy0208/llm-feedback-client#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "@types/node": "^20.5.1",
+    "@types/uuid": "^9.0.2",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}

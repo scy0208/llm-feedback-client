@@ -15,6 +15,7 @@ export declare class Client {
         configName: string;
         config: JSONType;
     }): Promise<string>;
+    contentUUID(s: string, time?: Date): string;
     storeContent({ content, configName, id, groupId, createdBy }: {
         content: string;
         configName: string;

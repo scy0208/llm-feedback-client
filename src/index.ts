@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import MD5 from 'crypto-js/md5';
 
 type JSONType = { [key: string]: any };
 type UUID = string;
@@ -36,16 +37,30 @@ export class Client {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.error(`HTTP error! status: ${response.status}`);
             }
         } catch (error) {
             console.error('Error occurred while calling /api/v0/register-llm-config', error);
-            throw error; // Re-throwing the error so that the calling function can handle it if needed
         }
 
         return configName
     }
 
+    contentUUID(s: string, time: Date = new Date()): string {
+        const timeStamp = time instanceof Date? time?.toDateString() : time
+        const res = s + this.projectId + timeStamp.slice(0, 16);
+        const hashResult = MD5(res);
+        const hashString: string = hashResult.toString();
+        // Convert the hash to UUID format
+        const result = [
+            hashString.slice(0, 8),
+            hashString.slice(8, 12),
+            hashString.slice(12, 16),
+            hashString.slice(16, 20),
+            hashString.slice(20, 32),
+        ].join('-');
+        return result;
+      }
 
     async storeContent({ content, configName, id, groupId, createdBy }:
         { content: string; configName: string; id?: UUID; groupId?: UUID; createdBy?: string; }): Promise<UUID> {
@@ -78,11 +93,10 @@ export class Client {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                console.error(`HTTP error! Status: ${response.status}`);
             }
         } catch (error) {
             console.error('There was a problem with the fetch operation ', error);
-            throw error; // Re-throwing the error so the user can handle it if needed
         }
 
         return contentId;
@@ -124,11 +138,10 @@ export class Client {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.error(`HTTP error! status: ${response.status}`);
             }
         } catch (error) {
             console.error('Error occurred while calling /api/v0/create-feedback ', error);
-            throw error; // Re-throwing the error so that the calling function can handle it if needed
         }
     }
 

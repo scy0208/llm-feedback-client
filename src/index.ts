@@ -63,7 +63,7 @@ export class Client {
       }
 
     async storeContent({ content, configName, id, groupId, createdBy }:
-        { content: string; configName: string; id?: UUID; groupId?: UUID; createdBy?: string; }): Promise<UUID> {
+        { content: string; configName: string; id?: string; groupId?: string; createdBy?: string; }): Promise<UUID> {
 
         const contentId = id || uuidv4();
         console.log(`Content stored with ID ${contentId} and config ${configName}:`, content);
@@ -102,6 +102,44 @@ export class Client {
         return contentId;
     }
 
+    async logDialogue({ instruction, response, configName, id=uuidv4(), groupId, createdBy }:
+        { instruction: string; response: string; configName: string; id?: string; groupId?: string; createdBy?: string; }): Promise<string> {
+
+        console.log(`Dialogue stored with ID ${id} and config ${configName}:`, instruction, response);
+
+        const requestBody: JSONType = {
+            instruction,
+            response,
+            id,
+            project_id: this.projectId,
+            config_name: configName
+        };
+
+        if (createdBy) {
+            requestBody.created_by = createdBy;
+        }
+
+        if (groupId) {
+            requestBody.group_id = groupId;
+        }
+
+        try {
+            const response = await fetch(`${this.baseUrl}/api/v0/log-dialogue`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                console.error(`HTTP error! Status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error('There was a problem with the fetch operation ', error);
+        }
+        return id;
+    }
 
     async createFeedback({ contentId, key, score, comment, user }:
         { contentId: string; key: string; score: number; comment?: string; user?: string; }): Promise<void> {

@@ -19,10 +19,18 @@ export declare class Client {
     storeContent({ content, configName, id, groupId, createdBy }: {
         content: string;
         configName: string;
-        id?: UUID;
-        groupId?: UUID;
+        id?: string;
+        groupId?: string;
         createdBy?: string;
     }): Promise<UUID>;
+    logDialogue({ instruction, response, configName, id, groupId, createdBy }: {
+        instruction: string;
+        response: string;
+        configName: string;
+        id?: string;
+        groupId?: string;
+        createdBy?: string;
+    }): Promise<string>;
     createFeedback({ contentId, key, score, comment, user }: {
         contentId: string;
         key: string;

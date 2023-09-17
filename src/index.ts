@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import MD5 from 'crypto-js/md5';
+export { default as ThumbsUpDown } from './components/ThumbsUpDown';
 
 type JSONType = { [key: string]: any };
 type UUID = string;

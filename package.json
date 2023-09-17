@@ -1,6 +1,6 @@
 {
   "name": "llm-feedback-client",
-  "version": "0.0.9",
+  "version": "0.0.15",
   "description": "NPM module to store LLM content and create feedback",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -26,13 +26,21 @@
     "@babel/cli": "^7.22.10",
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.15",
     "@types/crypto-js": "^4.1.1",
     "@types/node": "^20.5.1",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
     "@types/uuid": "^9.0.2",
     "typescript": "^5.1.6"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "@radix-ui/themes": "^1.1.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

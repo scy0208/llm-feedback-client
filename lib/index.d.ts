@@ -1,3 +1,4 @@
+export { default as ThumbsUpDown } from './components/ThumbsUpDown';
 type JSONType = {
     [key: string]: any;
 };
@@ -39,4 +40,3 @@ export declare class Client {
         user?: string;
     }): Promise<void>;
 }
-export {};
